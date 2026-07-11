@@ -38,14 +38,14 @@ class ActivityController {
             'activity_time' => $_POST['activity_time'] ?? '',
         ];
 
-        $response = ApiHelper::post('/activity', $data);
+        $response = ApiHelper::post('/activities', $data);
 
         if ($response['http_status'] === 201) {
             $_SESSION['success'] = "Kegiatan berhasil ditambahkan!";
-            header('Location: /activity');
+            header('Location: /activities');
         } else {
             $_SESSION['error'] = $response['message'] ?? "Gagal menambahkan kegiatan.";
-            header('Location: /activity/create');
+            header('Location: /activities/create');
         }
         exit();
     }
@@ -56,7 +56,7 @@ class ActivityController {
             exit();
         }
 
-        $response = ApiHelper::delete('/activity/' . $id);
+        $response = ApiHelper::delete('/activities/' . $id);
 
         if ($response['http_status'] === 200) {
             $_SESSION['success'] = "Kegiatan berhasil dihapus!";
@@ -64,7 +64,7 @@ class ActivityController {
             $_SESSION['error'] = "Gagal menghapus kegiatan.";
         }
         
-        header('Location: /activity');
+        header('Location: /activities');
         exit();
     }
 }

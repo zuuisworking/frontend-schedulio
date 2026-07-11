@@ -85,7 +85,7 @@ switch ($uri) {
         }
         break;
 
-    case '/activity':
+    case '/activities':
         require_once __DIR__ . '/app/controllers/activity_controller.php';
         $controller = new ActivityController();
         if ($method === 'POST') {
@@ -95,15 +95,15 @@ switch ($uri) {
         }
         break;
 
-    case '/activity/create':
+    case '/activities/create':
         require_once __DIR__ . '/app/controllers/activity_controller.php';
         $controller = new ActivityController();
         $controller->create();
         break;
 
 	
-    case '/activity/delete':
-        require_once __DIR__ . '/app/controllers/acrivity_controller.php';
+    case '/activities/delete':
+        require_once __DIR__ . '/app/controllers/activity_controller.php';
         $controller = new TaskController();
         $id = $_GET['id'] ?? null;
         if ($id) {
