@@ -85,6 +85,34 @@ switch ($uri) {
         }
         break;
 
+    case '/activities':
+        require_once __DIR__ . '/app/controllers/activity_controller.php';
+        $controller = new ActivityController();
+        if ($method === 'POST') {
+            $controller->store();
+        } else {
+            $controller->index();
+        }
+        break;
+
+    case '/activities/create':
+        require_once __DIR__ . '/app/controllers/activity_controller.php';
+        $controller = new ActivityController();
+        $controller->create();
+        break;
+
+	
+    case '/activities/delete':
+        require_once __DIR__ . '/app/controllers/activity_controller.php';
+        $controller = new TaskController();
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $controller->delete($id);
+        } else {
+            header('Location: /activity');
+        }
+        break;
+
     case '/schedule':
         require_once __DIR__ . '/app/controllers/schedule_controller.php';
         $controller = new ScheduleController();
@@ -110,10 +138,6 @@ switch ($uri) {
         } else {
             header('Location: /schedule');
         }
-        break;
-
-    case '/privacy':
-        require_once __DIR__ . '/app/views/pages/privacy.php';
         break;
 
     case '/about':
