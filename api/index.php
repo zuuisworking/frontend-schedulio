@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-define('API_BASE_URL', 'https://schedulio-backend.up.railway.app/api');
+define('API_BASE_URL', 'https://backend-schedulio-production-ec22.up.railway.app/api');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
