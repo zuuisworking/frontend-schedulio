@@ -88,7 +88,32 @@ switch ($uri) {
     case '/schedule':
         require_once __DIR__ . '/app/controllers/schedule_controller.php';
         $controller = new ScheduleController();
-        $controller->index();
+        if ($method === 'POST') {
+            $controller->store();
+        } else {
+            $controller->index();
+        }
+        break;
+
+    case '/schedule/create':
+        require_once __DIR__ . '/app/controllers/schedule_controller.php';
+        $controller = new ScheduleController();
+        $controller->create();
+        break;
+
+    case '/schedule/delete':
+        require_once __DIR__ . '/app/controllers/schedule_controller.php';
+        $controller = new ScheduleController();
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $controller->delete($id);
+        } else {
+            header('Location: /schedule');
+        }
+        break;
+
+    case '/privacy':
+        require_once __DIR__ . '/app/views/pages/privacy.php';
         break;
 
     case '/about':
