@@ -8,9 +8,9 @@
                 &copy; <?= date('Y') ?> Schedulio.
             </div>
             <div class="flex space-x-6">
-                <a href="#" class="hover:text-indigo-600 transition">Tentang Kami</a>
-                <a href="#" class="hover:text-indigo-600 transition">Bantuan</a>
-                <a href="#" class="hover:text-indigo-600 transition">Kebijakan Privasi</a>
+                <a href="/about" class="hover:text-indigo-600 transition">Tentang Kami</a>
+                <a href="/help" class="hover:text-indigo-600 transition">Bantuan</a>
+                <a href="/privacy" class="hover:text-indigo-600 transition">Kebijakan Privasi</a>
             </div>
         </div>
     </footer>
