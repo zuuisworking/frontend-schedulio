@@ -63,6 +63,17 @@ switch ($uri) {
         $controller->create();
         break;
 
+    case '/tasks/complete':
+        require_once __DIR__ . '/app/controllers/task_controller.php';
+        $controller = new TaskController();
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $controller->complete($id);
+        } else {
+            header('Location: /tasks');
+        }
+        break;
+
     case '/tasks/delete':
         require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
