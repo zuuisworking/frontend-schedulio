@@ -25,6 +25,16 @@ switch ($uri) {
         }
         break;
 
+    case '/register':
+        require_once __DIR__ . '/app/controllers/auth_controller.php';
+        $controller = new AuthController();
+        if ($method === 'POST') {
+            $controller->processRegister();
+        } else {
+            $controller->register();
+        }
+        break;
+
     case '/logout':
         require_once __DIR__ . '/app/controllers/auth_controller.php';
         $controller = new AuthController();

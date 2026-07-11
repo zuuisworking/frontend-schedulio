@@ -15,16 +15,23 @@
             <p class="text-gray-500 mt-2 text-sm">Masuk untuk mengelola prioritas belajarmu.</p>
         </div>
 
-        <!-- Bagian ini untuk menampilkan pesan error dari Session -->
+        <!-- Menampilkan pesan sukses (misal habis register) -->
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 text-sm rounded">
+                <?= htmlspecialchars($_SESSION['success']) ?>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
+        <!-- Menampilkan pesan error dari Session -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 text-sm rounded">
                 <?= htmlspecialchars($_SESSION['error']) ?>
             </div>
-            <!-- Jangan lupa hapus error setelah ditampilkan -->
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
 
-        <!-- Form Login, akan menembak ke URL /login dengan method POST -->
+        <!-- Form Login -->
         <form action="/login" method="POST" class="space-y-6">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Alamat Email</label>
@@ -41,6 +48,13 @@
                 Masuk
             </button>
         </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+                Belum punya akun? 
+                <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500 transition">Daftar sekarang</a>
+            </p>
+        </div>
     </div>
 
 </body>
