@@ -18,22 +18,20 @@
     <nav class="bg-indigo-600 text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Bagian Kiri: Logo -->
                 <div class="flex items-center">
                     <a href="/dashboard" class="text-xl font-extrabold tracking-wider hover:text-indigo-100 transition">
-                        SCHEDULIO
+                        Schedulio
                     </a>
                 </div>
 
-                <!-- Bagian Kanan: Menu Navigasi -->
                 <div class="flex items-center space-x-6 text-sm font-medium">
                     <a href="/dashboard" class="hover:text-indigo-100 transition">Dashboard</a>
                     <a href="/tasks" class="hover:text-indigo-100 transition">Tugas</a>
+                    <a href="/activities" class="hover:text-indigo-100 transition">Kegiatan</a>
                     <a href="/schedule" class="hover:text-indigo-100 transition">Jadwal</a>
                     
                     <span class="text-indigo-300">|</span>
                     
-                    <!-- Info Pengguna yang Login -->
                     <div class="flex items-center space-x-3">
                         <span class="text-indigo-100 font-normal">
                             Halo, <strong class="font-semibold"><?= htmlspecialchars($_SESSION['user']['name'] ?? 'User') ?></strong>
