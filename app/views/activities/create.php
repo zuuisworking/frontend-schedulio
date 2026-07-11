@@ -39,13 +39,13 @@ require_once __DIR__ . '/../layout/header.php';
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="date" class="block text-sm font-semibold text-gray-700 mb-1">Tanggal <span class="text-red-500">*</span></label>
-                <input type="date" id="date" name="date" required 
+                <label for="activity_date" class="block text-sm font-semibold text-gray-700 mb-1">Tanggal <span class="text-red-500">*</span></label>
+                <input type="date" id="activity_date" name="activity_date" required 
                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm text-gray-600">
             </div>
             <div>
-                <label for="time" class="block text-sm font-semibold text-gray-700 mb-1">Waktu <span class="text-red-500">*</span></label>
-                <input type="time" id="time" name="time" required 
+                <label for="activity_time" class="block text-sm font-semibold text-gray-700 mb-1">Waktu <span class="text-red-500">*</span></label>
+                <input type="time" id="activity_time" name="activity_time" required 
                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm text-gray-600">
             </div>
         </div>
