@@ -29,7 +29,7 @@ switch ($uri) {
         $controller = new DashboardController();
         $controller->index();
         break;
-    
+
     case '/tasks':
         require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
@@ -50,7 +50,6 @@ switch ($uri) {
         require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
         $id = $_GET['id'] ?? null;
-        
         if ($id) {
             $controller->delete($id);
         } else {
