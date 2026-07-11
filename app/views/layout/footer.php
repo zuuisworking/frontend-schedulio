@@ -5,7 +5,7 @@
     <footer class="bg-white border-t border-gray-200 mt-12 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
             <div class="mb-4 md:mb-0">
-                &copy; <?= date('Y') ?> Schedulio. Dibuat dengan 💻 oleh Zuu & Rara.
+                &copy; <?= date('Y') ?> Schedulio.
             </div>
             <div class="flex space-x-6">
                 <a href="#" class="hover:text-indigo-600 transition">Tentang Kami</a>

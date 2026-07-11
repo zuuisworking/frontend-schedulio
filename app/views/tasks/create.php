@@ -49,7 +49,7 @@ require_once __DIR__ . '/../layout/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <label for="difficulty_level" class="block text-sm font-medium text-gray-700">
-                    Tingkat Kesulitan (1-5) <span title="1=Sangat Mudah, 5=Sangat Sulit" class="cursor-help text-indigo-500 ml-1">ℹ️</span>
+                    Tingkat Kesulitan (1-5) <span title="1=Sangat Mudah, 5=Sangat Sulit" class="cursor-help text-indigo-500 ml-1">🛈</span>
                 </label>
                 <input type="range" id="difficulty_level" name="difficulty_level" min="1" max="5" value="3" 
                        class="mt-2 w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -59,7 +59,7 @@ require_once __DIR__ . '/../layout/header.php';
 
             <div>
                 <label for="importance_level" class="block text-sm font-medium text-gray-700">
-                    Tingkat Kepentingan (1-5) <span title="1=Kurang Penting, 5=Sangat Mendesak/Penting" class="cursor-help text-indigo-500 ml-1">ℹ️</span>
+                    Tingkat Kepentingan (1-5) <span title="1=Kurang Penting, 5=Sangat Mendesak/Penting" class="cursor-help text-indigo-500 ml-1">🛈</span>
                 </label>
                 <input type="range" id="importance_level" name="importance_level" min="1" max="5" value="3" 
                        class="mt-2 w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"

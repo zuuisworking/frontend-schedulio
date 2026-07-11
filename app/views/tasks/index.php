@@ -23,6 +23,13 @@ require_once __DIR__ . '/../layout/header.php';
     <?php unset($_SESSION['success']); ?>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['error'])): ?>
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 text-sm rounded shadow-sm">
+        <?= htmlspecialchars($_SESSION['error']) ?>
+    </div>
+    <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
+
 <div class="bg-white shadow-sm rounded-xl border border-gray-100 overflow-hidden">
     <?php if (empty($tasks)): ?>
         <div class="p-16 text-center text-gray-500 flex flex-col items-center">
@@ -67,17 +74,23 @@ require_once __DIR__ . '/../layout/header.php';
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <?php 
-                                $statusClass = (isset($task['status']) && $task['status'] === 'completed') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
-                                $statusText = (isset($task['status']) && $task['status'] === 'completed') ? 'Selesai' : 'Pending';
+                                $isCompleted = (isset($task['status']) && $task['status'] === 'completed');
+                                $statusClass = $isCompleted ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+                                $statusText = $isCompleted ? 'Selesai' : 'Pending';
                             ?>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <?= $statusClass ?>">
                                 <?= $statusText ?>
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <?php if (!$isCompleted): ?>
+                                <a href="/tasks/complete?id=<?= $task['id'] ?>" class="text-green-600 hover:text-green-900">Selesai</a>
+                                <span class="text-gray-300 mx-2">|</span>
+                            <?php endif; ?>
+                            
                             <a href="/tasks/delete?id=<?= $task['id'] ?>" 
                                onclick="return confirm('Apakah kamu yakin ingin menghapus tugas ini?');" 
-                               class="text-red-600 hover:text-red-900 ml-4">Hapus</a>
+                               class="text-red-600 hover:text-red-900">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

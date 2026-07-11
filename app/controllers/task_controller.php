@@ -51,6 +51,26 @@ class TaskController {
         exit();
     }
 
+    public function complete($id) {
+        if (!isset($_SESSION['token'])) {
+            header('Location: /login');
+            exit();
+        }
+
+        $response = ApiHelper::put('/tasks/' . $id, [
+            'status' => 'completed'
+        ]);
+
+        if ($response['http_status'] === 200) {
+            $_SESSION['success'] = "Yey! Tugas berhasil diselesaikan!";
+        } else {
+            $_SESSION['error'] = "Gagal mengubah status tugas.";
+        }
+        
+        header('Location: /tasks');
+        exit();
+    }
+
     public function delete($id) {
         if (!isset($_SESSION['token'])) {
             header('Location: /login');
