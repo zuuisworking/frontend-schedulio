@@ -1,85 +1,71 @@
 <?php
-?>
-<!DOCTYPE html>
-<html lang="id">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login - Schedulio</title>
-	<!-- Kita pakai Tailwind CSS agar tampilannya langsung modern -->
-	<script src="https://cdn.tailwindcss.com"></script>
-</head>
+session_start();
+define('API_BASE_URL', 'https://schedulio-backend.up.railway.app/api');
 
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
 
-	<div class="bg-white p-8 rounded-lg shadow-md w-96">
-		<h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Schedulio</h2>
+switch ($uri) {
+    case '/':
+    case '/login':
+        require_once __DIR__ . '/app/controllers/auth_controller.php';
+        $controller = new AuthController();
+        if ($method === 'POST') {
+            $controller->processLogin();
+        } else {
+            $controller->index();
+        }
+        break;
 
-		<form id="loginForm" class="space-y-4">
-			<div>
-				<label class="block text-sm font-medium text-gray-700">Email</label>
-				<input type="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-			</div>
+    case '/logout':
+        require_once __DIR__ . '/app/controllers/auth_controller.php';
+        $controller = new AuthController();
+        $controller->logout();
+        break;
 
-			<div>
-				<label class="block text-sm font-medium text-gray-700">Password</label>
-				<input type="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-			</div>
+    case '/dashboard':
+        require_once __DIR__ . '/app/controllers/dashboard_controller.php';
+        $controller = new DashboardController();
+        $controller->index();
+        break;
+    
+    case '/tasks':
+        require_once __DIR__ . '/app/controllers/task_controller.php';
+        $controller = new TaskController();
+        if ($method === 'POST') {
+            $controller->store();
+        } else {
+            $controller->index();
+        }
+        break;
 
-			<button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-				Login
-			</button>
-		</form>
-		<div id="alertMessage" class="mt-4 text-center text-sm text-red-600 hidden"></div>
-	</div>
+    case '/tasks/create':
+        require_once __DIR__ . '/app/controllers/task_controller.php';
+        $controller = new TaskController();
+        $controller->create();
+        break;
 
-	<script>
-		// URL API Backend-mu yang sudah mengudara di Railway
-		const API_URL = 'https://backend-schedulio-production-ec22.up.railway.app/api';
+    case '/tasks/delete':
+        require_once __DIR__ . '/app/controllers/task_controller.php';
+        $controller = new TaskController();
+        $id = $_GET['id'] ?? null;
+        
+        if ($id) {
+            $controller->delete($id);
+        } else {
+            header('Location: /tasks');
+        }
+        break;
 
-		document.getElementById('loginForm').addEventListener('submit', async function(e) {
-			e.preventDefault(); // Mencegah browser me-refresh halaman (seperti menahan main loop)
+    case '/schedule':
+        require_once __DIR__ . '/app/controllers/schedule_controller.php';
+        $controller = new ScheduleController();
+        $controller->index();
+        break;
 
-			const email = document.getElementById('email').value;
-			const password = document.getElementById('password').value;
-			const alertBox = document.getElementById('alertMessage');
-
-			try {
-				// Tembak API Login (Asynchronous Request)
-				const response = await fetch(`${API_URL}/login`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						email: email,
-						password: password
-					})
-				});
-
-				const data = await response.json();
-
-				if (response.ok && data.status === 200) {
-					// BERHASIL LOGIN!
-					// Simpan JWT Token ke "Heap Memory" milik browser (LocalStorage)
-					localStorage.setItem('schedulio_token', data.token);
-					localStorage.setItem('schedulio_username', data.user.name);
-
-					// Pindah ke halaman dashboard
-					window.location.href = 'dashboard.php';
-				} else {
-					// GAGAL LOGIN
-					alertBox.textContent = data.message || 'Login gagal!';
-					alertBox.classList.remove('hidden');
-				}
-			} catch (error) {
-				console.error("Fetch error:", error);
-				alertBox.textContent = "Gagal menghubungi server. Pastikan internet jalan.";
-				alertBox.classList.remove('hidden');
-			}
-		});
-	</script>
-</body>
-
-</html>
+    default:
+        http_response_code(404);
+        echo "<h1 style='text-align:center; margin-top:50px; font-family:sans-serif;'>404 - Halaman Tidak Ditemukan</h1>";
+        break;
+}
