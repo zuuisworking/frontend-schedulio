@@ -9,7 +9,7 @@ require_once __DIR__ . '/../layout/header.php';
         <p class="text-gray-600 mt-2 text-sm">Pantau produktivitas dan jadwal kegiatanmu dengan mudah di sini.</p>
     </div>
     <div class="flex flex-wrap gap-3">
-        <a href="/schedule/create" class="inline-flex items-center px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
+        <a href="/activities/create" class="inline-flex items-center px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
             <svg class="-ml-1 mr-2 h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
@@ -26,7 +26,6 @@ require_once __DIR__ . '/../layout/header.php';
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     
-    <!-- Area Grafik (Kiri, ambil 2/3 layar) -->
     <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col">
         <h3 class="text-lg font-bold text-gray-800 mb-1">Statistik Produktivitas</h3>
         <p class="text-xs text-gray-500 mb-6">Perbandingan penyelesaian tugas dan kegiatan 7 hari terakhir.</p>
@@ -61,7 +60,7 @@ require_once __DIR__ . '/../layout/header.php';
                 <div class="text-center py-6 text-gray-400">
                     <svg class="mx-auto h-12 w-12 text-gray-200 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     <p class="text-sm font-medium text-gray-500">Belum ada jadwal dalam waktu dekat.</p>
-                    <a href="/activity/create" class="mt-3 inline-block text-xs font-semibold text-indigo-600 hover:text-indigo-500">Buat jadwal sekarang &rarr;</a>
+                    <a href="/activities/create" class="mt-3 inline-block text-xs font-semibold text-indigo-600 hover:text-indigo-500">Buat jadwal sekarang &rarr;</a>
                 </div>
             <?php endif; ?>
         </div>
