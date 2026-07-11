@@ -13,7 +13,7 @@ class ActivityController {
         $response = ApiHelper::get('/activity');
         $kegiatans = $response['http_status'] === 200 ? ($response['data'] ?? []) : [];
         
-        require_once __DIR__ . '/../views/activity/index.php';
+        require_once __DIR__ . '/../views/activities/index.php';
     }
 
 	public function create() {
@@ -22,7 +22,7 @@ class ActivityController {
             exit();
         }
         
-        require_once __DIR__ . '/../views/activity/create.php';
+        require_once __DIR__ . '/../views/activities/create.php';
     }
 
     public function store() {
