@@ -116,6 +116,24 @@ switch ($uri) {
         require_once __DIR__ . '/app/views/pages/privacy.php';
         break;
 
+    case '/about':
+        require_once __DIR__ . '/app/controllers/page_controller.php';
+        $controller = new PageController();
+        $controller->about();
+        break;
+
+    case '/help':
+        require_once __DIR__ . '/app/controllers/page_controller.php';
+        $controller = new PageController();
+        $controller->help();
+        break;
+
+    case '/privacy':
+        require_once __DIR__ . '/app/controllers/page_controller.php';
+        $controller = new PageController();
+        $controller->privacy();
+        break;
+
     default:
         http_response_code(404);
         echo "<h1 style='text-align:center; margin-top:50px; font-family:sans-serif;'>404 - Halaman Tidak Ditemukan</h1>";
