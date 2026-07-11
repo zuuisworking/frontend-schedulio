@@ -1,14 +1,15 @@
 </main>
+
     <footer class="bg-white border-t border-gray-200 mt-auto">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-sm text-gray-500">
-                    &copy; <?= date('Y') ?> Schedulio.
+                    &copy; <?= date('Y') ?> Schedulio. Dibuat dengan 💻 oleh Zuu & Rara.
                 </p>
                 <div class="flex space-x-6 text-sm text-gray-500 font-medium">
-                    <button onclick="showToast('Halaman Tentang Kami sedang dalam tahap pengembangan.')" class="hover:text-indigo-600 transition outline-none">Tentang Kami</button>
-                    <button onclick="showToast('Hubungi email support@schedulio.com untuk bantuan.')" class="hover:text-indigo-600 transition outline-none">Bantuan</button>
-                    <button onclick="showToast('Kebijakan Privasi segera hadir untuk melindungimu.')" class="hover:text-indigo-600 transition outline-none">Kebijakan Privasi</button>
+                    <button onclick="showToast('✨ Halaman Tentang Kami sedang dalam tahap pengembangan.')" class="hover:text-indigo-600 transition outline-none">Tentang Kami</button>
+                    <button onclick="showToast('💌 Hubungi email support@schedulio.com untuk bantuan.')" class="hover:text-indigo-600 transition outline-none">Bantuan</button>
+                    <a href="/privacy" class="hover:text-indigo-600 transition outline-none">Kebijakan Privasi</a>
                 </div>
             </div>
         </div>
@@ -29,16 +30,18 @@
             
             container.appendChild(toast);
             
+            // Animasi masuk (Fade In & Slide Up)
             setTimeout(() => {
                 toast.classList.remove('opacity-0', 'translate-y-4');
             }, 10);
             
+            // Animasi keluar (Fade Out) & Hapus Elemen
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-4');
                 setTimeout(() => {
                     toast.remove();
-                }, 300);
-            }, 3500);
+                }, 300); // Waktu yang sama dengan durasi transisi
+            }, 3500); // Notifikasi tampil selama 3.5 detik
         }
     </script>
 
