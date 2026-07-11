@@ -1,7 +1,14 @@
 <?php
 
 session_start();
-define('API_BASE_URL', 'https://backend-schedulio-production-ec22.up.railway.app/api');
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
+$apiBaseUrl = $_ENV['API_BASE_URL'] ?? 'https://backend-schedulio-production-ec22.up.railway.app/api';
+define('API_BASE_URL', $apiBaseUrl);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
@@ -9,7 +16,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($uri) {
     case '/':
     case '/login':
-        require_once __DIR__ . '/../app/controllers/auth_controller.php';
+        require_once __DIR__ . '/app/controllers/auth_controller.php';
         $controller = new AuthController();
         if ($method === 'POST') {
             $controller->processLogin();
@@ -19,19 +26,19 @@ switch ($uri) {
         break;
 
     case '/logout':
-        require_once __DIR__ . '/../app/controllers/auth_controller.php';
+        require_once __DIR__ . '/app/controllers/auth_controller.php';
         $controller = new AuthController();
         $controller->logout();
         break;
 
     case '/dashboard':
-        require_once __DIR__ . '/../app/controllers/dashboard_controller.php';
+        require_once __DIR__ . '/app/controllers/dashboard_controller.php';
         $controller = new DashboardController();
         $controller->index();
         break;
 
     case '/tasks':
-        require_once __DIR__ . '/../app/controllers/task_controller.php';
+        require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
         if ($method === 'POST') {
             $controller->store();
@@ -41,13 +48,13 @@ switch ($uri) {
         break;
 
     case '/tasks/create':
-        require_once __DIR__ . '/../app/controllers/task_controller.php';
+        require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
         $controller->create();
         break;
 
     case '/tasks/delete':
-        require_once __DIR__ . '/../app/controllers/task_controller.php';
+        require_once __DIR__ . '/app/controllers/task_controller.php';
         $controller = new TaskController();
         $id = $_GET['id'] ?? null;
         if ($id) {
@@ -58,7 +65,7 @@ switch ($uri) {
         break;
 
     case '/schedule':
-        require_once __DIR__ . '/../app/controllers/schedule_controller.php';
+        require_once __DIR__ . '/app/controllers/schedule_controller.php';
         $controller = new ScheduleController();
         $controller->index();
         break;

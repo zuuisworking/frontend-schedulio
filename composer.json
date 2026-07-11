@@ -1,0 +1,7 @@
+{
+    "name": "zuudevs/frontend-schedulio",
+    "description": "Frontend API for Schedulio",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
