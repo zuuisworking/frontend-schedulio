@@ -104,12 +104,12 @@ switch ($uri) {
 	
     case '/activities/delete':
         require_once __DIR__ . '/app/controllers/activity_controller.php';
-        $controller = new TaskController();
+        $controller = new ActivityController();
         $id = $_GET['id'] ?? null;
         if ($id) {
             $controller->delete($id);
         } else {
-            header('Location: /activity');
+            header('Location: /activities');
         }
         break;
 
