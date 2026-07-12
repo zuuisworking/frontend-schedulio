@@ -168,6 +168,12 @@ switch ($uri) {
         }
         break;
 
+    case '/schedulio':
+        require_once __DIR__ . '/app/controllers/schedulio_controller.php';
+        $controller = new SchedulioController();
+        $controller->index();
+        break;
+    
     case '/about':
         require_once __DIR__ . '/app/controllers/page_controller.php';
         $controller = new PageController();
