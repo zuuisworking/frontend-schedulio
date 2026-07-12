@@ -11,7 +11,7 @@ class SchedulioController {
         }
 
         // First, trigger the calculation to make sure results are fresh
-        ApiHelper::post('/schedulio/calculate');
+        ApiHelper::post('/schedulio/calculate', []);
 
         $response = ApiHelper::get('/schedulio/recommendations');
         $recommendations = $response['http_status'] === 200 ? ($response['data'] ?? []) : [];
