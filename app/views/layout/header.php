@@ -29,7 +29,6 @@
                     <a href="/tasks" class="hover:text-indigo-100 transition">Tugas</a>
                     <a href="/activities" class="hover:text-indigo-100 transition">Kegiatan</a>
                     <a href="/courses" class="hover:text-indigo-100 transition">Kelas</a>
-                    <a href="/schedule" class="hover:text-indigo-100 transition">Jadwal</a>
                     
                     <span class="text-indigo-300">|</span>
                     

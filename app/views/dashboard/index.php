@@ -57,10 +57,25 @@ require_once __DIR__ . '/../layout/header.php';
                 Jadwal Terdekat
             </h3>
             
-            <?php if (!empty($nearestSchedule)): ?>
-                <div class="py-2">
-                    <p class="text-lg font-bold text-gray-900"><?= htmlspecialchars($nearestSchedule['name']) ?></p>
-                    <p class="text-sm text-gray-500 mt-1">📅 <?= date('d M Y', strtotime($nearestSchedule['date'])) ?> | ⏰ <?= htmlspecialchars($nearestSchedule['time']) ?> WIB</p>
+            <?php if (!empty($nearestSchedules)): ?>
+                <div class="space-y-4">
+                    <?php foreach ($nearestSchedules as $item): ?>
+                        <div class="py-3 border-b border-gray-50 last:border-0">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900"><?= htmlspecialchars($item['name']) ?></p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span class="px-1.5 py-0.5 text-[10px] font-medium rounded-sm <?= $item['type'] === 'task' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700' ?>">
+                                            <?= $item['type'] === 'task' ? 'Tugas' : 'Kegiatan' ?>
+                                        </span>
+                                        <p class="text-xs text-gray-500">
+                                            📅 <?= date('d M', strtotime($item['datetime'])) ?> | ⏰ <?= date('H:i', strtotime($item['datetime'])) ?> WIB
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             <?php else: ?>
                 <div class="text-center py-6 text-gray-400">
@@ -76,7 +91,7 @@ require_once __DIR__ . '/../layout/header.php';
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const chartData = <?= json_encode($chartData ?? ['labels' => ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], 'tasks' => [0,0,0,0,0,0,0], 'schedules' => [0,0,0,0,0,0,0]]) ?>;
+        const chartData = <?= json_encode($chartData ?? ['labels' => ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], 'tasks' => [0,0,0,0,0,0,0], 'activities' => [0,0,0,0,0,0,0]]) ?>;
 
         const ctx = document.getElementById('dashboardChart').getContext('2d');
         

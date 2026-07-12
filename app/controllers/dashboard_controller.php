@@ -23,16 +23,9 @@ class DashboardController {
             }
         }
 
-        $nearestSchedule = null;
-        $today = date('Y-m-d');
-        foreach ($schedules as $schedule) {
-            if (isset($schedule['date']) && $schedule['date'] >= $today) {
-                if ($nearestSchedule === null || $schedule['date'] < $nearestSchedule['date']) {
-                    $nearestSchedule = $schedule;
-                }
-            }
-        }
-
+        $nearestResponse = ApiHelper::get('/dashboard/nearest');
+        $nearestSchedules = $nearestResponse['http_status'] === 200 ? ($nearestResponse['data'] ?? []) : [];
+        
         $chartData = [
             'labels' => [],
             'tasks' => array_fill(0, 7, 0),
