@@ -11,7 +11,7 @@ class ActivityController {
         }
 
         $response = ApiHelper::get('/activities');
-        $kegiatans = $response['http_status'] === 200 ? ($response['data'] ?? []) : [];
+        $activities = $response['http_status'] === 200 ? ($response['data'] ?? []) : [];
         
         require_once __DIR__ . '/../views/activities/index.php';
     }
