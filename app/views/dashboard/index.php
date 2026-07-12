@@ -91,7 +91,7 @@ require_once __DIR__ . '/../layout/header.php';
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const chartData = <?= json_encode($chartData ?? ['labels' => ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], 'tasks' => [0,0,0,0,0,0,0], 'activities' => [0,0,0,0,0,0,0]]) ?>;
+        const chartData = <?= json_encode($chartData ?? ['labels' => ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], 'tasks' => [0,0,0,0,0,0,0], 'schedules' => [0,0,0,0,0,0,0]]) ?>;
 
         const ctx = document.getElementById('dashboardChart').getContext('2d');
         
