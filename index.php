@@ -113,6 +113,34 @@ switch ($uri) {
         }
         break;
 
+    case '/courses':
+        require_once __DIR__ . '/app/controllers/course_controller.php';
+        $controller = new CourseController();
+        if ($method === 'POST') {
+            $controller->store();
+        } else {
+            $controller->index();
+        }
+        break;
+
+    case '/courses/create':
+        require_once __DIR__ . '/app/controllers/course_controller.php';
+        $controller = new CourseController();
+        $controller->create();
+        break;
+
+	
+    case '/courses/delete':
+        require_once __DIR__ . '/app/controllers/course_controller.php';
+        $controller = new CourseController();
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $controller->delete($id);
+        } else {
+            header('Location: /courses');
+        }
+        break;
+
     case '/schedule':
         require_once __DIR__ . '/app/controllers/schedule_controller.php';
         $controller = new ScheduleController();
